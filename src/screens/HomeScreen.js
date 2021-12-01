@@ -8,10 +8,22 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { fontRef, heightRef, widthRef } from "../utils/Dimensions";
+import { useState } from "react";
+import SettingScreen from "./SettingScreen";
+import Calender from "./Calender";
+import { List } from "react-native-paper";
 
-const AddScreen = () => {
+const data = [
+  { id: 1, text: "School 1", icon: "school" },
+  { id: 2, text: "School 2", icon: "school" },
+  { id: 3, text: "School 3", icon: "school" },
+];
+
+const AddScreen = ({ navigation }) => {
+  const [expanded, setExpanded] = React.useState(true);
+  const handlePress = () => setExpanded(!expanded);
+  const [show, setShow] = useState(false);
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -19,17 +31,31 @@ const AddScreen = () => {
       keyboardVerticalOffset={Platform.OS === "ios" ? 12 * heightRef : 0}
     >
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View style={styles.headerContainer}>
-          <Text style={styles.headerText}>Location</Text>
-          <TouchableOpacity>
-            <FontAwesome name="plus" color="#000" size={20} />
-          </TouchableOpacity>
-        </View>
+        <List.Accordion
+          title="Location"
+          expanded={expanded}
+          onPress={handlePress}
+        >
+          <List.Item
+            title="Lahore"
+            onPress={() => navigation.navigate("Setting")}
+          />
+          <List.Item
+            title="Karachi"
+            onPress={() => navigation.navigate("Setting")}
+          />
+          <List.Item
+            title="Multan"
+            onPress={() => navigation.navigate("Setting")}
+          />
+        </List.Accordion>
         <View style={styles.container}>
           <View style={styles.box}>
             <View style={styles.boxContainer}>
               <View style={styles.textContainer}>
-                <Text style={styles.text}>Enter Your Postal Code Here</Text>
+                <Text style={styles.text}>
+                  You can also Enter Your Postal Code Here
+                </Text>
               </View>
               <View style={styles.searchContainer}>
                 <TextInput
@@ -72,6 +98,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "pink",
+    borderRadius: 5 * heightRef,
   },
   boxContainer: {
     flexDirection: "column",
@@ -85,7 +112,8 @@ const styles = StyleSheet.create({
     borderBottomColor: "white",
   },
   text: {
-    fontSize: 16 * fontRef,
+    fontSize: 24 * fontRef,
+    fontWeight: "bold",
   },
   searchContainer: {
     flex: 0.5,

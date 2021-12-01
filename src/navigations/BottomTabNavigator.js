@@ -2,7 +2,7 @@ import React from "react";
 
 import HomeScreen from "../screens/HomeScreen";
 import SettingScreen from "../screens/SettingScreen";
-import Header from "../components/Header";
+import Calender from "../screens/Calender";
 
 import { FontAwesome5 } from "@expo/vector-icons";
 
@@ -19,7 +19,7 @@ const BottomTabNavigator = () => {
           if (route.name == "Home") {
             return (
               <FontAwesome5
-                name="home"
+                name="search"
                 size={24}
                 color={focused ? "red" : "grey"}
               />
@@ -28,6 +28,14 @@ const BottomTabNavigator = () => {
             return (
               <FontAwesome5
                 name="user-circle"
+                size={24}
+                color={focused ? "red" : "grey"}
+              />
+            );
+          } else if (route.name == "Calender") {
+            return (
+              <FontAwesome5
+                name="calendar-alt"
                 size={24}
                 color={focused ? "red" : "grey"}
               />
@@ -49,6 +57,13 @@ const BottomTabNavigator = () => {
         }}
         name="Setting"
         component={SettingScreen}
+      />
+      <BottomTab.Screen
+        options={{
+          tabBarShowLabel: false,
+        }}
+        name="Calender"
+        component={Calender}
       />
     </BottomTab.Navigator>
   );
