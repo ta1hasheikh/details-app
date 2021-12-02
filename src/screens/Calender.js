@@ -1,10 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import WeeklyCalendar from "react-native-weekly-calendar";
 
 const Calender = () => {
   const sampleEvents = [
-    { start: "2020-03-23 09:00:00", duration: "00:20:00", note: "Walk my dog" },
+    {
+      start: "2020-03-23 09:00:00",
+      duration: "00:20:00",
+      note: "Walk my dog",
+    },
     {
       start: "2020-03-24 14:00:00",
       duration: "01:00:00",
@@ -33,7 +37,7 @@ const Calender = () => {
   ];
   return (
     <View style={styles.container}>
-      <WeeklyCalendar events={sampleEvents} style={{ height: 400 }} />
+      <WeeklyCalendar events={sampleEvents} style={{ height: 500 }} />
     </View>
   );
 };
